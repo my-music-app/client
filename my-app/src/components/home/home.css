@@ -1,0 +1,16 @@
+h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient( rgb(206, 8, 58), rgb(212, 223, 151), rgb(206, 8, 58));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-start {
+    direction: rtl;
+    margin-left: 50%;
+    background: -webkit-linear-gradient(white, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

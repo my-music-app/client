@@ -1,0 +1,12 @@
+.inputText {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-song {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
