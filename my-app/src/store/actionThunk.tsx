@@ -70,7 +70,7 @@ export const editSongThunk = (song: SongModel, id: String) => {
 
     return async (dispatch: any) => {
         try {
-            const res = await axios.put(url+`/${id}`, song,
+            const res = await axios.put(url, song,
                 {
                     headers: {
                         'Content-Type': 'application/json',
