@@ -1,9 +1,17 @@
 import axios from "axios"
+import { useState } from "react"
 import { url } from '../config/apiConfig'
-import { SongModel } from "../model/songModel"
+import { Genre, SongModel } from "../model/songModel"
 import { addSong, getSongs, deleteSong, editSong } from "./action"
 
 export const addSongThunk = (song: SongModel) => {
+    const _song:{song:SongModel}={song:{
+         _id:"",
+        title:"",
+        artist:"",
+        genre: Genre.CLASSICAL,
+        length: 0,
+        price: 0}};
     return async (dispatch: any) => {
         try {
             const res = await axios.post(url, song,
@@ -13,9 +21,8 @@ export const addSongThunk = (song: SongModel) => {
                         Accept: 'application/json',
                     },
                 });
-                //
-                console.log("succes")
-            dispatch(addSong(res.data))
+                _song.song=res.data;
+            dispatch(addSong(_song))
         }
         catch (error) {
             if (axios.isAxiosError(error)) {
@@ -29,6 +36,7 @@ export const addSongThunk = (song: SongModel) => {
     }
 }
 export const deleteSongThunk = (id: String) => {
+    const _id:{id:String}={id:id}
     return async (dispatch: any) => {
         try {
             await axios.delete(url+`/${id}`,
@@ -38,7 +46,7 @@ export const deleteSongThunk = (id: String) => {
                         Accept: 'application/json',
                     },
                 });
-            dispatch(deleteSong(id));
+            dispatch(deleteSong(_id));
         }
         catch (error) {
             if (axios.isAxiosError(error)) {
@@ -52,6 +60,14 @@ export const deleteSongThunk = (id: String) => {
     }
 }
 export const editSongThunk = (song: SongModel, id: String) => {
+    const _song:{song:SongModel}={song:{
+        _id:"",
+        title:"",
+        artist:"",
+        genre: Genre.CLASSICAL,
+        length: 0,
+        price: 0}};
+
     return async (dispatch: any) => {
         try {
             const res = await axios.put(url+`/${id}`, song,
@@ -61,7 +77,8 @@ export const editSongThunk = (song: SongModel, id: String) => {
                         Accept: 'application/json',
                     },
                 });
-            dispatch(editSong(res.data));
+                _song.song=res.data
+            dispatch(editSong(_song));
         }
         catch (error) {
             if (axios.isAxiosError(error)) {
@@ -76,11 +93,13 @@ export const editSongThunk = (song: SongModel, id: String) => {
 }
 export const addSongsThunk = () => {
     debugger;
+    const _songs:{songs:SongModel[]}={songs:[]};
     return async (dispatch: any) => {
         try {
             debugger
             const res = await axios.get(url);
-            dispatch(getSongs(res.data));
+            _songs.songs=res.data;
+            dispatch(getSongs(_songs));
         }
         catch (error) {
             if (axios.isAxiosError(error)) {
@@ -94,10 +113,12 @@ export const addSongsThunk = () => {
     }
 }
 export const searchByArtistThunk = (search: String) => {
+    const _songs:{songs:SongModel[]}={songs:[]};
     return async (dispatch: any) => {
         try {
             const res = await axios.get(url+`/byArtist/${search}`)
-            dispatch(getSongs(res.data));
+            _songs.songs=res.data
+            dispatch(getSongs(_songs));
         }
         catch (error) {
             if (axios.isAxiosError(error)) {

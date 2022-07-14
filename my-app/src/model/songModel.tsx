@@ -4,7 +4,6 @@ export enum Genre {
      POP ,
      RAP  
 }
-
 export type SongModel = {
      _id?: String,
      title: String,
@@ -12,5 +11,4 @@ export type SongModel = {
      genre: Genre,
      length: number,
      price: number
-
 };

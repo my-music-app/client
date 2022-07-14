@@ -7,31 +7,31 @@ const initialState: { songs: SongModel[] } = {
 //change to {song:SongModel}
 
 type Action =
-    | { type: "ADD_SONG", payload: SongModel}
-    | { type: "DELETE_SONG", payload: String }
-    | { type: "EDIT_SONG", payload: SongModel }
-    | { type: "GET_SONGS", payload: SongModel[] }
+    | { type: "ADD_SONG", payload: {song:SongModel}}
+    | { type: "DELETE_SONG", payload: {id:String} }
+    | { type: "EDIT_SONG", payload: {song:SongModel} }
+    | { type: "GET_SONGS", payload:{songs: SongModel[] }}
 
 export const songReducer = (state: { songs: SongModel[] } = initialState, action: Action) => {
     switch (action.type) {
         case "ADD_SONG":
             return {
-                ...state, songs: [...state.songs, action.payload]
+                ...state, songs: [...state.songs, action.payload.song]
             };
         case "DELETE_SONG":
             return {
-                ...state, songs: state.songs.filter((event) => event._id !== action.payload)
+                ...state, songs: state.songs.filter((event) => event._id !== action.payload.id)
             };
         case "EDIT_SONG":
             //find 
             return {
                 ...state, songs: [...state.songs.map((event) => {
-                    if (event._id === action.payload._id) {
-                        event.title = action.payload.title;
-                        event.artist = action.payload.artist;
-                        event.genre = action.payload.genre;
-                        event.price = action.payload.price;
-                        event.length = action.payload.length;
+                    if (event._id === action.payload.song._id) {
+                        event.title = action.payload.song.title;
+                        event.artist = action.payload.song.artist;
+                        event.genre = action.payload.song.genre;
+                        event.price = action.payload.song.price;
+                        event.length = action.payload.song.length;
                     }
                     return event;
                 })]
@@ -39,7 +39,7 @@ export const songReducer = (state: { songs: SongModel[] } = initialState, action
         case "GET_SONGS":
             return {
                 ...state,
-                songs: action.payload
+                songs: action.payload.songs
             };
         default: return { ...state }
     }
