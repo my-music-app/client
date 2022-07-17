@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import { url } from '../config/apiConfig'
+import { SONG_URL } from '../config/apiConfig'
 import { Genre, SongModel } from "../model/songModel"
 import { addSong, getSongs, deleteSong, editSong } from "./action"
 
@@ -9,12 +9,12 @@ export const addSongThunk = (song: SongModel) => {
          _id:"",
         title:"",
         artist:"",
-        genre: Genre.CLASSICAL,
+        genre: "CLASSICAL",
         length: 0,
         price: 0}};
     return async (dispatch: any) => {
         try {
-            const res = await axios.post(url, song,
+            const res = await axios.post(SONG_URL, song,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export const deleteSongThunk = (id: String) => {
     const _id:{id:String}={id:id}
     return async (dispatch: any) => {
         try {
-            await axios.delete(url+`/${id}`,
+            await axios.delete(SONG_URL+`/${id}`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -64,13 +64,13 @@ export const editSongThunk = (song: SongModel, id: String) => {
         _id:"",
         title:"",
         artist:"",
-        genre: Genre.CLASSICAL,
+        genre:"CLASSICAL",
         length: 0,
         price: 0}};
 
     return async (dispatch: any) => {
         try {
-            const res = await axios.put(url, song,
+            const res = await axios.put(SONG_URL, song,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export const addSongsThunk = () => {
     return async (dispatch: any) => {
         try {
             debugger
-            const res = await axios.get(url);
+            const res = await axios.get(SONG_URL);
             _songs.songs=res.data;
             dispatch(getSongs(_songs));
         }
@@ -116,7 +116,7 @@ export const searchByArtistThunk = (search: String) => {
     const _songs:{songs:SongModel[]}={songs:[]};
     return async (dispatch: any) => {
         try {
-            const res = await axios.get(url+`/byArtist/${search}`)
+            const res = await axios.get(SONG_URL+`/byArtist/${search}`)
             _songs.songs=res.data
             dispatch(getSongs(_songs));
         }

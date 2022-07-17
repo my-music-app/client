@@ -1,1 +1,1 @@
-export const url=`http://localhost:8080/song`;
+export const SONG_URL=`http://localhost:8080/song`;

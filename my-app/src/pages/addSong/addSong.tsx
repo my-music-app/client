@@ -4,14 +4,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
 import { Button, FormHelperText, InputAdornment, OutlinedInput } from '@mui/material';
-import { Genre, SongModel } from '../../model/songModel';
+import {  Genre, SongModel } from '../../model/songModel';
 import { BackButton } from '../../components/backButton';
 import { Isong } from '../wrapsComponent';
 import './addSong.css'
 
 export function AddSong({ _addSong }: Isong) {
     const [song, setSong] = useState<SongModel>({
-        genre: Genre.CLASSICAL,
+        genre:"CLASSICAL",
         title: "",
         artist: "",
         length: 0,
@@ -98,10 +98,10 @@ export function AddSong({ _addSong }: Isong) {
                             backgroundColor: 'rgba(254, 254, 254, 0.877)',
                             ":hover": { background: 'rgba(254, 254, 254, 0.877)' }
                         }} required>
-                        <MenuItem value={Genre.CLASSICAL}>CLASSICAL</MenuItem>
-                        <MenuItem value={Genre.ROCK}>ROCK</MenuItem>
-                        <MenuItem value={Genre.POP}>POP</MenuItem>
-                        <MenuItem value={Genre.RAP}>RAP</MenuItem>
+                        <MenuItem value={"CLASSICAL"}>CLASSICAL</MenuItem>
+                        <MenuItem value={"ROCK"}>ROCK</MenuItem>
+                        <MenuItem value={"POP"}>POP</MenuItem>
+                        <MenuItem value={"RAP"}>RAP</MenuItem>
                     </Select>
                     <FormHelperText sx={{ color: 'white' }} id="outlined-weight-helper-text">Length</FormHelperText>
                     <OutlinedInput

@@ -6,7 +6,7 @@ import { EditSong } from "./editSong/editSong";
 import {SongLandingPage, SongModel } from "./songLoadingPage/songLandingPage";
 import { addSongsThunk, addSongThunk, deleteSongThunk, editSongThunk, searchByArtistThunk } from '../store/actionThunk'
 import type { } from 'redux-thunk/extend-redux'
-import { store } from "..";
+import { store } from "../store/store";
 
 export type RootState = ReturnType<typeof store.getState>;
 
@@ -38,7 +38,6 @@ export function WrapsComponent() {
     const searchByArtist = (artistName: String) => {
         dispatch(searchByArtistThunk(artistName));
     }
-
     useEffect(() => {
         debugger
         getData();

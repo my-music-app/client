@@ -1,9 +1,15 @@
-export enum Genre {
-     CLASSICAL,
-     ROCK ,
-     POP ,
-     RAP  
-}
+// export enum Genre {
+//      CLASSICAL,
+//      ROCK ,
+//      POP ,
+//      RAP  
+// }
+export type Genre =
+          "CLASSICAL"
+          |"ROCK"
+          |"POP"
+          |"RAP"
+     
 export type SongModel = {
      _id?: String,
      title: String,

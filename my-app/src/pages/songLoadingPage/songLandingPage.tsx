@@ -18,7 +18,6 @@ import { RowOfSong } from "./subComponent/rowOfSong";
 export function SongLandingPage({ _songs, _getData, _deleteSong, _searchByArtist }: Isong) {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const songs = _songs;
 
   const searchByArtist = async () => {
     debugger
@@ -56,7 +55,7 @@ export function SongLandingPage({ _songs, _getData, _deleteSong, _searchByArtist
             </TableRow>
           </TableHead>
           <TableBody sx={{ marginLeft: 15 }}>
-            {songs?.map((row: any) => (
+            {_songs?.map((row: any) => (
               <RowOfSong _deleteSong={_deleteSong}rowSong={row} key={row._id}/>
             ))}
           </TableBody>

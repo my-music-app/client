@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { songReducer } from "./store/reducer";
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import { store } from './store/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,7 +20,6 @@ declare global {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 composeEnhancers()
 //, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-export const store = createStore(combineReducers({ songReducer}) ,applyMiddleware(thunk));
 
 export type AppDispatch = typeof store.dispatch
 root.render(

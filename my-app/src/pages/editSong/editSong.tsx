@@ -16,7 +16,7 @@ export function EditSong({ _editSong, _songs }: Isong) {
     const [firstEntry, setFirstEntry] = useState(true);
     const [song, setSong] = useState<SongModel>({
         _id: "",
-        genre: Genre.CLASSICAL,
+        genre:"CLASSICAL",
         title: "",
         artist: "",
         length: 0,
@@ -102,8 +102,8 @@ export function EditSong({ _editSong, _songs }: Isong) {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         label="Ganre"
-                        value={firstEntry ?
-                            Object.keys(Genre)[Object.values(Genre).indexOf(song.genre)] :
+                        value={
+                            // firstEntry ?Object.keys(Genre)[Object.values(Genre).indexOf(song.genre)] :
                             song.genre
                         }
                         onChange={setGanerFromSelect}
@@ -112,10 +112,10 @@ export function EditSong({ _editSong, _songs }: Isong) {
                             backgroundColor: 'rgba(254, 254, 254, 0.877)',
                             ":hover": { background: 'rgba(254, 254, 254, 0.877)' }
                         }}>
-                        <MenuItem value={Genre.CLASSICAL}>CLASSICAL</MenuItem>
-                        <MenuItem value={Genre.ROCK}>ROCK</MenuItem>
-                        <MenuItem value={Genre.POP}>POP</MenuItem>
-                        <MenuItem value={Genre.RAP}>RAP</MenuItem>
+                        <MenuItem value={"CLASSICAL"}>CLASSICAL</MenuItem>
+                        <MenuItem value={"ROCK"}>ROCK</MenuItem>
+                        <MenuItem value={"POP"}>POP</MenuItem>
+                        <MenuItem value={"RAP"}>RAP</MenuItem>
 
                     </Select>
                     <FormHelperText sx={{ color: 'white' }} id="outlined-weight-helper-text">Length</FormHelperText>
